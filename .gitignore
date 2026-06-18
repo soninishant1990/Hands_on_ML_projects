@@ -1,0 +1,10 @@
+# data files — too big for GitHub / re-downloadable
+*.csv
+*.zip
+*.parquet
+*.h5
+
+# python & jupyter junk
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
