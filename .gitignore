@@ -3,9 +3,14 @@
 *.zip
 *.parquet
 *.h5
+<<<<<<< HEAD
 *.7z
 *.jpg
 *.xlsx
+=======
+
+# python & jupyter junk
+>>>>>>> 9110c0fe65ea1abe144950e8a324131f40730eba
 __pycache__/
 .ipynb_checkpoints/
 .DS_Store
