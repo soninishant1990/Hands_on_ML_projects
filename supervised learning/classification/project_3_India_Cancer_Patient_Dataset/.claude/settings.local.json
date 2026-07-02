@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/nishantsoni/Desktop/personal/ML project/Hands_on_ML_projects/supervised learning/classification/**)",
+      "Bash(mkdir -p project_5_telco_churn)",
+      "Read(//Users/nishantsoni/Desktop/personal/ML project/**)",
+      "Bash(python3)"
+    ]
+  }
+}

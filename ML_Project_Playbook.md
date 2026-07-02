@@ -7,7 +7,8 @@
 > **How to use:** before each phase of a new project, open the matching section.
 > After each project, add anything new to the **Techniques Log** and **Scoreboard** at the bottom.
 >
-> Last updated: 2026-06-26 · Projects logged: India Cancer, P1 Heart Disease
+> Last updated: 2026-06-27 · Projects logged: India Cancer, P1 Heart Disease, Telco Churn
+> Planned queue: ~~Telco Churn~~ ✅ → Ames → Fetal Health (CTG) → Insurance → Covertype → Energy Efficiency → Glioma Grading
 
 ---
 
@@ -303,6 +304,16 @@ India Cancer note: SMOTE ≈ no-balancing on weighted-F1 there; `scale_pos_weigh
 | 2026-06 | P1 Heart | Permutation importance | Multivariate feature value; beats single correlation bar |
 | 2026-06 | P1 Heart | Rigor & Honesty chunk | Repeated CV distribution, error bars, threshold, learning/validation curves |
 | 2026-06 | P1 Heart | Domain check (demographics-only) | Quantify how much skill comes from "downstream" features |
+| 2026-06 | Telco Churn | Hidden missingness | Blank/whitespace strings aren't NaN — audit both; TotalCharges trap |
+| 2026-06 | Telco Churn | Domain imputation | tenure=0 → TotalCharges=0 (meaning-based, not median) |
+| 2026-06 | Telco Churn | class_weight vs SMOTE | class_weight='balanced' simplest; both mostly shift the boundary, PR-AUC ~flat |
+| 2026-06 | Telco Churn | PR-AUC for imbalance | average_precision over ROC-AUC when positives are rare |
+| 2026-06 | Telco Churn | Threshold tuning | F1-optimal & target-recall cutoffs; the real recall lever |
+| 2026-06 | Telco Churn | Calibration | CalibratedClassifierCV fixes probabilities; class_weight distorts them (Brier ↓, ROC-AUC unchanged) |
+| 2026-06 | Telco Churn | Leakage: row-by-row vs learns-from-data | fixed-bin/count/flag safe before split; target/mean/std/OHE must be inside pipeline |
+| 2026-06 | Telco Churn | Decision-tree viz for interactions | shallow plot_tree shows the splits the model picks — beats manual interaction hunting |
+| 2026-06 | Telco Churn | Systematic interaction scan | rank Contract×every feature by within-group churn spread |
+| 2026-06 | Telco Churn | Tuning often negligible | gains come from metric/imbalance/threshold, not hyperparameters |
 | | *(next)* | | |
 
 ---
@@ -314,12 +325,13 @@ India Cancer note: SMOTE ≈ no-balancing on weighted-F1 there; `scale_pos_weigh
 |---|---|---|---|---|---|
 | India Cancer | Binary (Alive/Deceased) | Weighted F1 | ~0.71 | — | After dropping leakage; GB ≈ LR ≈ XGB |
 | P1 Heart Disease | Binary (disease) | ROC-AUC | ~0.84–0.90 (full) | Dummy ~0.54 | Demographics-only ~0.65–0.70; models statistically tied |
-| Telco Churn | Binary (imbalanced) | PR-AUC / recall | *TBD* | | NEXT |
+| Telco Churn | Binary (imbalanced) | PR-AUC / ROC-AUC | ~0.65 / ~0.84 | Dummy recall=0 | recall dialed to 0.79 via class_weight+threshold; tuning negligible |
 | Ames Housing | Regression | RMSE / R² | *TBD* | | |
 | Fetal Health (CTG) | Multiclass | macro-F1 | *TBD* | | |
 | Medical Insurance | Regression | RMSE / R² | *TBD* | | |
 | Covertype | Multiclass (big) | macro-F1 | *TBD* | | |
 | Energy Efficiency | Multi-output reg | RMSE / R² | *TBD* | | |
+| Glioma Grading | Binary (LGG vs GBM) | ROC-AUC / F1 | *TBD* | | UCI #759; clinical + gene-mutation features; ref MDPI IJMS 2022 |
 
 ---
 
